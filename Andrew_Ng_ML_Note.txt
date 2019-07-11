@@ -1,0 +1,56 @@
+2019-07-09
+ML: Study that gives computer the ability to learn w.o. being explicitly programmed.
+"A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E."
+
+Example: playing checkers.
+
+E = the experience of playing many games of checkers
+
+T = the task of playing checkers.
+
+P = the probability that the program will win the next game.
+
+In general, any machine learning problem can be assigned to one of two broad classifications:
+
+Supervised learning and Unsupervised learning.
+
+Regression: Predict Continuous valued output
+
+Classification: Discreted valued ouput
+
+Training Set -> Learning Algorithm -> Hypothesis
+x -> Hypothesis -> Estimated value
+h = theta_0 + theta_1x
+
+2019-07-10
+Cost function = Squared Error Function: function of parameter theta_1(slope of hypothesis function)
+Minimize 1/2m * sum of (h(x) - y)^2: Accuracy of hypothesis
+h(x) = theta_0 + theta_1x
+
+Gradient Descent(More Common Method)
+Outline
+start with theta_0,theta_1
+keep change theta_0,theta_1 to minimize J(theta_0,theta_1) = 1/2m * sum of (h(x) - y)^2 to get to the minimum we want
+Repeat Until Convergence {theta_j := theta_j - alpha * d/dtheta_j J(theta_0,theta_1)} (for j=0 and j=1)
+alpha: learning rate
+You simultaneously update theta_0 and theta_1
+CORRECT WAY: compute temp0, temp1 and then assign temp0, temp1 to theta_0 and theta_1
+
+2019-07-11
+d/dtheta_j J(theta_0,theta_1) = d/dtheta_j 1/2m sum of (h(x)-y)^2
+=d/dtheta_j*1/2m sum of (theta_0 + theta_1x - y)^2
+
+Gradient Descent Algorithm
+repeat until convergence {
+theta_0 := theta_0 - alpha * 1/m sum of h(x)-y
+theta_1 := theta_1 - alpha * 1/m sum of (h(x)-y)x
+}
+
+Batch Gradient Descent
+"Batch": Each step of Gradient descent uses all the training examples
+
+Matrix: Rectengular array of numbers
+Dimension: # of rows x # of columns m-by-n matrix
+A_ij ith row jth column
+Scalar multiplication and addition: ez... learned in Univ.
+Prediction = data matrix * parameters
