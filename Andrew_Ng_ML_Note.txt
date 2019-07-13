@@ -54,3 +54,63 @@ Dimension: # of rows x # of columns m-by-n matrix
 A_ij ith row jth column
 Scalar multiplication and addition: ez... learned in Univ.
 Prediction = data matrix * parameters
+
+2019-07-12
+Multivariate Linear Regression
+x_1 x_2 x_3.....(input variables)
+y = (prediction variable)
+
+n = number of features
+x^(i) = ith training example
+x^(i)_j = value of feature j in ith training example
+X^(2) = 2nd training example
+= [1416
+3
+2
+40]
+4-d vector it is.
+
+Hypothesis :
+h(x) = theta_0 + theta_1x_1 + theta_2x_2 +theta_3x_3 + theta_4x_4
+
+For convenience, define x_0 = 1
+
+Feature vector x = n+1 dimensional =[x0 x1 x2 ... xn]'
+theta = n+1 dimensional = [theta_0 theta_1 ... theta_n]'
+
+h(x) = theta' * x
+
+New Gradient Descent Algorithm (n >=1)
+Repeat {
+theta_j := theta_j - alpha * 1/m * sum of (h(x^(i)) - y^(i))*x^(i)_j
+} (simultaneously update thtea_j for j= 0, 1, 2, ...., n)
+
+Feature Scaling
+Idea: Make sure features are on a similar scale.
+
+Get every feature into approx. -1=<x_i =<1 range.
+
+mean normalization
+replace x_i with x_i -  mu_i to make features have approx. 0 mean.
+x1 <- x1-mu1/ s1
+mu1 = average value of x1 in training set
+s1 = range(max-min) or stdv.
+
+Making Sure gradient descent is working correctly.
+J(theta) should decrease after every iteration.
+
+Example automatic convergence test: declare convergence if J(theta) decreases by less than 10^-3 in one iteration
+
+Features and Polynomial Regression
+Polynomial Regression
+
+Normal Equation
+Method to solve theta analytically
+Intuition: you set derivative of J(theta) and make derivative 0
+theta = (X'X)^-1X'y
+
+Normal Equation noninvertibility
+theta = (X'X)^-1*X'y
+What if X'X is singular?
+->Redundant features(linearly dependent)
+->Too many features(e.g. m =< n)
