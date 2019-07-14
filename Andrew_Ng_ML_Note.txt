@@ -114,3 +114,30 @@ theta = (X'X)^-1*X'y
 What if X'X is singular?
 ->Redundant features(linearly dependent)
 ->Too many features(e.g. m =< n)
+
+2019-07-14
+Classification
+value y we want to predict is discret(0,1)
+ex) email:spam/not spam, tumor: malignant/benign
+y ={0,1}
+0: "Negative Class"(benign tumor)
+1: "Positive Class"(malignant tumor)
+Hypothesis: = theta'*x
+Threshold classifier output h(x) at 0.5:
+h(x) >= 0.5, predict y=1
+h(x) < 0.5, preidct y=0
+Logistic Regression
+: Want 0<=h(x)<=1
+Hypothesis Representation
+h(x) = g(theta'*x) =  1/(1+e^-(theta'*x))
+g(z) = 1/(1+e^-z): logistic function(Sigmoid function)
+Interpretation: h(x) = estimated probability that y=1 on input x
+h(x) = p(y=1\x;theta) "probability that y=1, given x, parameterized by theta"
+
+Decision Boundary
+g(z) >= 0.5 when z >=0
+therefore, h(x) >= 0.5 when g(theta'*x) >=0
+
+ex: h(x) = g(theta0 + theta1*x1 + theta2*x2 )
+
+Non-linear decision Boundary
