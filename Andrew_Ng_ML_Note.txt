@@ -141,3 +141,85 @@ therefore, h(x) >= 0.5 when g(theta'*x) >=0
 ex: h(x) = g(theta0 + theta1*x1 + theta2*x2 )
 
 Non-linear decision Boundary
+2019-07-15
+
+Cost function of Logistic Regression
+
+Training set:{(x(1),y(1)), (x(2),y(2)), ...(x(m),y(m))}
+m examples x = [x0 x1 x2 .... xn]' x0=1, y={0,1} => n+1 dimension
+
+How to choose parameters theta?
+Cost(h(x), y) = 1/2(h(x)-y)^2
+
+Cost(h(x),y) = -log(h(x)) for y=1, -log(1-h(x)) for y =0
+Cost(hθ(x),y)→∞ if y=0andhθ(x)→1
+Cost(hθ(x),y)→∞ if y=1andhθ(x)→0
+If our correct answer 'y' is 0, then the cost function will be 0 if our hypothesis function also outputs 0. If our hypothesis approaches 1, then the cost function will approach infinity.
+
+If our correct answer 'y' is 1, then the cost function will be 0 if our hypothesis function outputs 1. If our hypothesis approaches 0, then the cost function will approach infinity.
+
+Note that writing the cost function in this way guarantees that J(θ) is convex for logistic regression.
+
+Simplified Cost Function and Gradient Descent
+Cost(h(x),y) = -y*log(h(x)) - (1-y)*log(1-h(x))
+J(theta) = -1/m*[sum of y*logh(x) + (1-y)*log(1-h(x))]
+
+To fit parameters theta:
+min J(theta)
+To make a prediction given new x:
+Output h(x) = 1/(1 + e^(-theta'*x))
+
+Gradient Descent
+Repeat {
+	theta_j = theta_j -alpha * d/dtheta_j J(theta) = theta_j - alpha * sum of (h(x)-y)*x
+}h(x) = 1/(1+e^(-theta'*x))
+Algorithm looks identical to linear regression
+You need to monitor convergence
+
+J(θ)=1/m*(−y'*log(h)−(1−y)'*log(1−h))
+A vectorized implementation is:
+theta = theta - alpha/m*X'*(g(X*theta) - y)
+
+Advanced Optimization
+Cost function J(theta), Want min J(theta)
+Given theta, we have code that can compute
+J(theta) and d/dtheta_j J(theta)
+
+Optimization Algorithms:
+- Gradient Descent
+- Conjugate gradient
+- BFGS
+- L-BFGS
+
+No need to manually pick alpha
+Often faster than gradient descent
+
+Multiclass Classification: One-vs-all method
+ex: Email Foldering/tagging : Work, Friends, Family, Hobby y = { 1, 2, 3, 4}
+You make multiple h(x)
+h(i)(x) = P(y=i|x;theta) (i=1,2,3..)
+
+Train a logistic regression classifier h(x) for each class i to predict the probability that y = i
+prediction = max(h(x))
+
+Overfitting
+underfit = high bias
+overfit = high variance
+: With too many features, the learned hypothesis may fit the training set very well but fail to generalize to new examples.
+
+Addressing overfitting:
+1. Reduce number of features
+- manually select which features to keep
+- model selection algorithm
+2. Regularization
+- keep all the features, but reduce magnitude/values of parameters theta_j
+-works well when we have a lot of features
+
+Cost function(Regularization)
+Intuition: make high order theta really small
+Small values for parameters
+-simpler hypothesis (lower order)
+-less prone to overfitting
+add extra regularization term at the end
+J(theta) = 1/2m * sum of (h(x) - y)^2 + lambda * sum of theta_j^2
+lambda = regularization parameter : It determines how much the costs of our theta parameters are inflated.
