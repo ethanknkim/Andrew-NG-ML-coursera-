@@ -223,3 +223,62 @@ Small values for parameters
 add extra regularization term at the end
 J(theta) = 1/2m * sum of (h(x) - y)^2 + lambda * sum of theta_j^2
 lambda = regularization parameter : It determines how much the costs of our theta parameters are inflated.
+
+2019-07-16
+Regularized Linear Regression
+
+theta_j = theta_j*(1-alpha * lambda/m)-alpha/m* sum of (h(x)-y)*xj, (1-alpha * lambda/m)<1
+
+Normal equation
+
+X=[x1'; x2'; .....xm'], y = [y1, y2, ...ym]'
+
+theta = (X'X+lambda[0 0 0 0.. 0)^-1 *X'y
+		   0 1 0 0  0
+		   0 0 1 0 . 0]
+
+Non-invertibility
+Suppose m(# of examples) <= n(#of features),
+
+Regularized Logistic Regression
+J(theta)  = -[1/m * sum of y*loglambda/2m * sum of theta_j^2 for j=1....n
+
+Neural Networks
+Model Representations
+Dendrites: input features
+output: result of hypothesis function
+
+Forward propagation: vectorized implementation
+a1(2) = g(theta10(1)*x0 +theta11(1)x1 + theta12(1)x2 + theta13(1)x3
+
+2019-07-17
+Non-linear classification example: XOR/XNOR
+
+y = x1 XOR x2
+x1 XNOR x2 = NOT(x1 XOR x2)
+
+-10 +20x1 + 20x2
+x1 x2 g
+0 0 -10
+1 0 10
+0 1 10
+1 1 30
+
+(not x1) and (not x2)
+x1 not x1 x2 not x2
+0 1 0 1
+1 0 1 0
+x1 x2 not x1 not x2 g
+0 0 1 1 1
+1 0 0 1 0
+0 1 1 0 0
+1 1 0 0 0
+
+Multiclass classification
+To classify data into multiple classes, we let our hypothesis function return a vector of values.
+
+Neural Network (Classification)
+L = total no. of layers
+s_l = no. of units in layer l
+Binary / Multi-class Classification
+1 output unit / K output unit
